@@ -40,10 +40,10 @@ class PostsList extends Component {
               </div>
               <div className="post-comments-list">
                 <div className="post-comments-items">
-                  <div className="post-comments-headers">
+                  <div className="post-comment-header">
                     <span className="post-comment-author"> bill</span>
                     <span className="post-comment-time"> a minute ago..</span>
-                    <span className="post-comment-like"> 5</span>
+                    <span className="post-comment-likes"> 5</span>
                   </div>
                   <div className="post-comment-content">Random comment</div>
                 </div>
