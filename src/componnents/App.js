@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PostsList } from './';
 import { fetchPosts } from '../actions/posts';
+import PropType from 'prop-types';
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
@@ -22,4 +23,7 @@ function mapStateToProps(state) {
     posts: state.posts,
   };
 }
+App.protoTypes = {
+  posts: PropType.array.isRequired,
+};
 export default connect(mapStateToProps)(App);
