@@ -1,5 +1,6 @@
 import {
   AUTHENTICATE_USER,
+  CLEAR_AUTH_STATE,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -13,10 +14,17 @@ const initialAuthState = {
   error: null,
   isLoggedin: false,
   inProgress: false,
+  isSignuped: false,
 };
 export default function auth(state = initialAuthState, action) {
   switch (action.type) {
+    case CLEAR_AUTH_STATE:
+      return {
+        ...state,
+        error: null,
+      };
     case LOGIN_START:
+    case SIGNUP_START:
       return {
         ...state,
         inProgress: true,
@@ -30,6 +38,7 @@ export default function auth(state = initialAuthState, action) {
         error: null,
       };
     case LOGIN_FAILED:
+    case SIGNUP_FAILED:
       return {
         ...state,
         inProgress: false,
@@ -47,6 +56,15 @@ export default function auth(state = initialAuthState, action) {
         user: {},
         isLoggedin: false,
       };
+
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        inProgress: false,
+        error: null,
+        isSignuped: true,
+      };
+
     default:
       return state;
   }

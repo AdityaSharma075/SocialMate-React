@@ -14,8 +14,9 @@ class Navbar extends React.Component {
     return (
       <nav className="nav">
         <div className="left-nav">
-          <Link to="/" />
-          <img src={SocialMate} alt="logo" />
+          <Link to="/">
+            <img src={SocialMate} alt="logo" />
+          </Link>
         </div>
         <div className="search-container">
           <img

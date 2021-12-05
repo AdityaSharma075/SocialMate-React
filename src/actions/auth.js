@@ -1,11 +1,16 @@
 import {
   AUTHENTICATE_USER,
+  CLEAR_AUTH_STATE,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGOUT_USER,
+  SIGNUP_FAILED,
+  SIGNUP_START,
+  SIGNUP_SUCCESS,
 } from './actionTypes';
 import { getFormBody } from '../helpers/utils';
+import { Navigate } from 'react-router-dom';
 export function startLogin() {
   return {
     type: LOGIN_START,
@@ -56,5 +61,50 @@ export function authenticateUser(user) {
 export function logoutUser() {
   return {
     type: LOGOUT_USER,
+  };
+}
+
+export function signin(email, password, confirm_password, name) {
+  return (dispatch) => {
+    dispatch(startSignup());
+    const url = '/api/v1/users/sign-up';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: getFormBody({ email, password, confirm_password, name }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          dispatch(signupSuccess());
+
+          return;
+        }
+        dispatch(signupFailed(data.message));
+      });
+  };
+}
+
+export function startSignup() {
+  return {
+    type: SIGNUP_START,
+  };
+}
+export function signupSuccess() {
+  return {
+    type: SIGNUP_SUCCESS,
+  };
+}
+export function signupFailed(error) {
+  return {
+    type: SIGNUP_FAILED,
+    error,
+  };
+}
+export function clearAuthState() {
+  return {
+    type: CLEAR_AUTH_STATE,
   };
 }
