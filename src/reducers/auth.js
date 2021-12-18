@@ -15,6 +15,7 @@ const initialAuthState = {
   isLoggedin: false,
   inProgress: false,
   isSignuped: false,
+  authenticate: false,
 };
 export default function auth(state = initialAuthState, action) {
   switch (action.type) {
@@ -49,6 +50,7 @@ export default function auth(state = initialAuthState, action) {
         ...state,
         user: action.user,
         isLoggedin: true,
+        authenticate: true,
       };
     case LOGOUT_USER:
       return {

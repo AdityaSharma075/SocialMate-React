@@ -1,18 +1,28 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Home, Navbar, Page404, Login, Signup } from './';
+import { Home, Navbar, Page404, Login, Signup, Settings } from './';
 import { fetchPosts } from '../actions/posts';
 import PropType from 'prop-types';
 import { authenticateUser } from '../actions/auth';
 
+const PrivateRoutes = (privateRoutesProps) => {
+  const { isLoggedin } = privateRoutesProps;
+  console.log(':', isLoggedin);
+  return isLoggedin ? <Outlet /> : <Navigate to="/login" />;
+};
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
     const token = localStorage.getItem('token');
     if (token) {
       const user = JSON.parse(atob(token.split('.')[1]));
-      console.log('user', user);
       this.props.dispatch(
         authenticateUser({
           email: user.email,
@@ -24,7 +34,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, auth } = this.props;
     return (
       <Router>
         <div>
@@ -34,6 +44,13 @@ class App extends React.Component {
           <Route path="/" element={<Home posts={posts} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          {/* private route from here */}
+          {auth.authenticate && (
+            <Route element={<PrivateRoutes isLoggedin={auth.isLoggedin} />}>
+              <Route path="/setting" element={<Settings />} />
+            </Route>
+          )}
+
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Router>
@@ -44,6 +61,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
+    auth: state.auth,
   };
 }
 App.protoTypes = {

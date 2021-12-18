@@ -10,7 +10,7 @@ import {
   SIGNUP_SUCCESS,
 } from './actionTypes';
 import { getFormBody } from '../helpers/utils';
-import { Navigate } from 'react-router-dom';
+
 export function startLogin() {
   return {
     type: LOGIN_START,
