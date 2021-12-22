@@ -8,6 +8,7 @@ import {
   SIGNUP_FAILED,
   SIGNUP_START,
   SIGNUP_SUCCESS,
+  SET_AUTH,
 } from './actionTypes';
 import { getFormBody } from '../helpers/utils';
 
@@ -106,5 +107,10 @@ export function signupFailed(error) {
 export function clearAuthState() {
   return {
     type: CLEAR_AUTH_STATE,
+  };
+}
+export function notAuthenticate() {
+  return {
+    type: SET_AUTH,
   };
 }

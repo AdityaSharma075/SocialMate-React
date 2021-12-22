@@ -80,7 +80,6 @@ class Settings extends Component {
               className="button edit-btn"
               onClick={() => this.handelChange('editMode', true)}
             >
-              {' '}
               Edit Profile
             </button>
           )}

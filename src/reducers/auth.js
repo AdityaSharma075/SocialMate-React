@@ -8,6 +8,7 @@ import {
   SIGNUP_FAILED,
   SIGNUP_START,
   SIGNUP_SUCCESS,
+  SET_AUTH,
 } from '../actions/actionTypes';
 const initialAuthState = {
   user: {},
@@ -23,6 +24,11 @@ export default function auth(state = initialAuthState, action) {
       return {
         ...state,
         error: null,
+      };
+    case SET_AUTH:
+      return {
+        ...state,
+        authenticate: true,
       };
     case LOGIN_START:
     case SIGNUP_START:

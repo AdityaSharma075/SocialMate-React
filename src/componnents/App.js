@@ -10,12 +10,10 @@ import { connect } from 'react-redux';
 import { Home, Navbar, Page404, Login, Signup, Settings } from './';
 import { fetchPosts } from '../actions/posts';
 import PropType from 'prop-types';
-import { authenticateUser } from '../actions/auth';
+import { authenticateUser, notAuthenticate } from '../actions/auth';
 
-const PrivateRoutes = (privateRoutesProps) => {
-  const { isLoggedin } = privateRoutesProps;
-  console.log(':', isLoggedin);
-  return isLoggedin ? <Outlet /> : <Navigate to="/login" />;
+const PrivateRoutes = ({ isLoggedin, children }) => {
+  return isLoggedin ? children : <Navigate to="/login" />;
 };
 class App extends React.Component {
   componentDidMount() {
@@ -30,30 +28,41 @@ class App extends React.Component {
           name: user.name,
         })
       );
+    } else {
+      this.props.dispatch(notAuthenticate());
     }
   }
 
   render() {
     const { posts, auth } = this.props;
     return (
-      <Router>
-        <div>
-          <Navbar />
-        </div>
-        <Routes>
-          <Route path="/" element={<Home posts={posts} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          {/* private route from here */}
-          {auth.authenticate && (
-            <Route element={<PrivateRoutes isLoggedin={auth.isLoggedin} />}>
-              <Route path="/setting" element={<Settings />} />
-            </Route>
-          )}
+      <>
+        {!auth.authenticate && <div> Loading..... </div>}
+        {auth.authenticate && (
+          <Router>
+            <div>
+              <Navbar />
+            </div>
+            <Routes>
+              <Route path="/" element={<Home posts={posts} />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              {/* private route from here */}
+              <Route
+                path="/setting"
+                element={
+                  <PrivateRoutes isLoggedin={auth.isLoggedin}>
+                    <Settings />
+                  </PrivateRoutes>
+                }
+              />
 
-          <Route path="*" element={<Page404 />} />
-        </Routes>
-      </Router>
+              <Route path="*" element={<Page404 />} />
+            </Routes>
+          </Router>
+        )}
+        )
+      </>
     );
   }
 }
