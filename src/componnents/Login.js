@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { clearAuthState, login } from '../actions/auth';
 
+const LoggedIn = () => {
+  let location = useLocation();
+  const { from } = location.state || { from: { pathname: '/' } };
+  return <Navigate to={from} />;
+};
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -37,10 +42,11 @@ class Login extends Component {
     // console.log(this.emailInputRef);
     // console.log(this.passwordInputRef);
   };
+
   render() {
     const { error, inProgress, isLoggedin } = this.props.auth;
     if (isLoggedin) {
-      return <Navigate to="/" />;
+      return <LoggedIn />;
     }
     return (
       <form className="login-form">

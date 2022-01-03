@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
-  Outlet,
+  useLocation,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Home, Navbar, Page404, Login, Signup, Settings } from './';
@@ -13,7 +13,13 @@ import PropType from 'prop-types';
 import { authenticateUser, notAuthenticate } from '../actions/auth';
 
 const PrivateRoutes = ({ isLoggedin, children }) => {
-  return isLoggedin ? children : <Navigate to="/login" />;
+  const location = useLocation();
+  console.log('location', location);
+  return isLoggedin ? (
+    children
+  ) : (
+    <Navigate to="/login" state={{ from: location.pathname }} />
+  );
 };
 class App extends React.Component {
   componentDidMount() {
@@ -61,7 +67,6 @@ class App extends React.Component {
             </Routes>
           </Router>
         )}
-        )
       </>
     );
   }

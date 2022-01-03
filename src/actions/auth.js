@@ -9,8 +9,10 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SET_AUTH,
+  EDIT_USER_SUCCESSFUL,
+  EDIT_USER_FAILED,
 } from './actionTypes';
-import { getFormBody } from '../helpers/utils';
+import { getAuthToken, getFormBody } from '../helpers/utils';
 
 export function startLogin() {
   return {
@@ -112,5 +114,43 @@ export function clearAuthState() {
 export function notAuthenticate() {
   return {
     type: SET_AUTH,
+  };
+}
+
+export function editUserSuccesful(user) {
+  return {
+    type: EDIT_USER_SUCCESSFUL,
+    user,
+  };
+}
+export function editUserFailed(error) {
+  return {
+    type: EDIT_USER_FAILED,
+    error,
+  };
+}
+export function editUser(name, password, confirm_password, userId) {
+  return (dispatch) => {
+    const url = '/api/v1/users/edit';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${getAuthToken()}`,
+      },
+      body: getFormBody({ name, password, confirm_password, _id: userId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          dispatch(editUserSuccesful(data.data.user));
+
+          if (data.data.token) {
+            localStorage.setItem('token', data.data.token);
+          }
+          return;
+        }
+        dispatch(editUserFailed(data.message));
+      });
   };
 }
