@@ -11,6 +11,7 @@ import {
   SET_AUTH,
   EDIT_USER_SUCCESSFUL,
   EDIT_USER_FAILED,
+  PASSWORD_NOT_MATCH,
 } from './actionTypes';
 import { getAuthToken, getFormBody } from '../helpers/utils';
 
@@ -127,6 +128,11 @@ export function editUserFailed(error) {
   return {
     type: EDIT_USER_FAILED,
     error,
+  };
+}
+export function passwordNotMatch() {
+  return {
+    type: PASSWORD_NOT_MATCH,
   };
 }
 export function editUser(name, password, confirm_password, userId) {

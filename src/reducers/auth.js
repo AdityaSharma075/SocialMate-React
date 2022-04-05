@@ -11,6 +11,7 @@ import {
   SET_AUTH,
   EDIT_USER_SUCCESSFUL,
   EDIT_USER_FAILED,
+  PASSWORD_NOT_MATCH,
 } from '../actions/actionTypes';
 const initialAuthState = {
   user: {},
@@ -19,6 +20,7 @@ const initialAuthState = {
   inProgress: false,
   isSignuped: false,
   authenticate: false,
+  passwordNotMatch: null,
 };
 export default function auth(state = initialAuthState, action) {
   switch (action.type) {
@@ -84,6 +86,11 @@ export default function auth(state = initialAuthState, action) {
       return {
         ...state,
         error: action.error,
+      };
+    case PASSWORD_NOT_MATCH:
+      return {
+        ...state,
+        passwordNotMatch: true,
       };
     default:
       return state;

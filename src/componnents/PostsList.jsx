@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { images } from '../helpers';
+
+import { Link } from 'react-router-dom';
 class PostsList extends Component {
   render() {
     const { posts } = this.props;
@@ -9,10 +12,9 @@ class PostsList extends Component {
           <div className="post-wrapper" key={post._id}>
             <div className="post-header">
               <div className="post-avatar">
-                <img
-                  src="https://cdn-icons.flaticon.com/png/512/2202/premium/2202112.png?token=exp=1637320475~hmac=445a41a0f8c9566cc7b6e9898d5abeef"
-                  alt="user-pic"
-                />
+                <Link to={`/user/${post.user._id}`}>
+                  <img src={images.man} alt="user-pic" />
+                </Link>
                 <div>
                   <span className="post-author">{post.user.name}</span>
                   <span className="post-time">a minute ago...</span>
@@ -21,17 +23,11 @@ class PostsList extends Component {
               <div className="post-content">{post.content}</div>
               <div className="post-actions">
                 <div className="post-like">
-                  <img
-                    src="https://cdn-icons.flaticon.com/png/512/2589/premium/2589175.png?token=exp=1637320536~hmac=3f4ac8d7c25cc04dfba4520d0b0d3ee4"
-                    alt="like icon"
-                  />
+                  <img src={images.heart_active} alt="like icon" />
                   <span>{post.likes.length}</span>
                 </div>
                 <div className="post-comments-icon">
-                  <img
-                    src="https://cdn-icons.flaticon.com/png/512/3114/premium/3114810.png?token=exp=1637320568~hmac=f0f2bf4680b9b4177824df0921dc265e"
-                    alt="comments-icon"
-                  />
+                  <img src={images.comment} alt="comments-icon" />
                   <span>{post.comments.length}</span>
                 </div>
               </div>

@@ -34,7 +34,7 @@ class Login extends Component {
   };
   handelFormSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     const { email, password } = this.state;
     if (email && password) {
       this.props.dispatch(login(email, password));
@@ -55,6 +55,7 @@ class Login extends Component {
         <div className="field">
           <input
             type="email"
+            autocomplete="true"
             placeholder="Email"
             required
             // ref={this.emailInputRef}

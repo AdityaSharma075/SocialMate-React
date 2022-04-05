@@ -6,15 +6,16 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
+// import { images } from '../helpers';
 import { connect } from 'react-redux';
-import { Home, Navbar, Page404, Login, Signup, Settings } from './';
+import { Home, Navbar, Page404, Login, Signup, Settings, User } from '.';
 import { fetchPosts } from '../actions/posts';
 import PropType from 'prop-types';
 import { authenticateUser, notAuthenticate } from '../actions/auth';
 
 const PrivateRoutes = ({ isLoggedin, children }) => {
   const location = useLocation();
-  console.log('location', location);
+
   return isLoggedin ? (
     children
   ) : (
@@ -53,12 +54,21 @@ class App extends React.Component {
               <Route path="/" element={<Home posts={posts} />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+
               {/* private route from here */}
               <Route
                 path="/setting"
                 element={
                   <PrivateRoutes isLoggedin={auth.isLoggedin}>
                     <Settings />
+                  </PrivateRoutes>
+                }
+              />
+              <Route
+                path="/user/:userId"
+                element={
+                  <PrivateRoutes isLoggedin={auth.isLoggedin}>
+                    <User />
                   </PrivateRoutes>
                 }
               />

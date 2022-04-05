@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { clearAuthState, editUser } from '../actions/auth';
+import { clearAuthState, editUser, passwordNotMatch } from '../actions/auth';
+import { images } from '../helpers';
+
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -20,22 +22,31 @@ class Settings extends Component {
   handelSave = () => {
     const { name, password, confirmPassword } = this.state;
     const { user } = this.props.auth;
-    this.props.dispatch(editUser(name, password, confirmPassword, user._id));
+    {
+      name &&
+        password === confirmPassword &&
+        this.props.dispatch(
+          editUser(name, password, confirmPassword, user._id)
+        );
+    }
+    {
+      password !== confirmPassword && this.props.dispatch(passwordNotMatch());
+    }
   };
   componentWillUnmount() {
     this.props.dispatch(clearAuthState());
   }
   render() {
-    const { user, error } = this.props.auth;
+    const { user, error, passwordNotMatch } = this.props.auth;
     const { editMode } = this.state;
     return (
       <div className="settings">
         <div className="img-container">
-          <img
-            src="https://cdn-icons.flaticon.com/png/512/2202/premium/2202112.png?token=exp=1637383511~hmac=e82d6c0a3716c9f3942a93d1d57351d8"
-            alt="user-dp"
-          />
+          <img src={images.man} alt="user-dp" />
         </div>
+        {passwordNotMatch && (
+          <div className="alert error-dailog">Password not match </div>
+        )}
         {error && <div className="alert error-dailog">{error}</div>}
         {error === false && (
           <div className="alert success-dailog">Succesfully Updated</div>
@@ -64,6 +75,7 @@ class Settings extends Component {
 
             <input
               type="password"
+              required
               onChange={(e) => this.handleChange('password', e.target.value)}
               value={this.state.password}
             />
@@ -76,6 +88,7 @@ class Settings extends Component {
 
             <input
               type="password"
+              required
               onChange={(e) =>
                 this.handleChange('confirmPassword', e.target.value)
               }
