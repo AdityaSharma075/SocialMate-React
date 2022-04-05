@@ -12,6 +12,7 @@ import { Home, Navbar, Page404, Login, Signup, Settings, User } from '.';
 import { fetchPosts } from '../actions/posts';
 import PropType from 'prop-types';
 import { authenticateUser, notAuthenticate } from '../actions/auth';
+import { fetchUserFriends } from '../actions/friends';
 
 const PrivateRoutes = ({ isLoggedin, children }) => {
   const location = useLocation();
@@ -35,13 +36,18 @@ class App extends React.Component {
           name: user.name,
         })
       );
+      // const user = jwtDecode(token);
+      // console.log('12');
+      this.props.dispatch(fetchUserFriends());
     } else {
       this.props.dispatch(notAuthenticate());
     }
   }
 
   render() {
-    const { posts, auth } = this.props;
+    const { posts, auth, friends } = this.props;
+    console.log(friends, 'ad');
+    // const { posts, auth, friends } = this.props;
     return (
       <>
         {!auth.authenticate && <div> Loading..... </div>}
@@ -51,7 +57,16 @@ class App extends React.Component {
               <Navbar />
             </div>
             <Routes>
-              <Route path="/" element={<Home posts={posts} />} />
+              <Route
+                path="/"
+                element={
+                  <Home
+                    posts={posts}
+                    friends={this.props.friends.friends}
+                    isLoggedin={auth.isLoggedin}
+                  />
+                }
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
 
@@ -86,6 +101,7 @@ function mapStateToProps(state) {
   return {
     posts: state.posts,
     auth: state.auth,
+    friends: state.friends,
   };
 }
 App.protoTypes = {
