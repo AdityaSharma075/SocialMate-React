@@ -62,7 +62,7 @@ class App extends React.Component {
                 element={
                   <Home
                     posts={posts}
-                    friends={this.props.friends.friends}
+                    friends={this.props.friends}
                     isLoggedin={auth.isLoggedin}
                   />
                 }

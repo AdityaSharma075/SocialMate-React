@@ -23,15 +23,14 @@ class Settings extends Component {
     const { name, password, confirmPassword } = this.state;
     const { user } = this.props.auth;
     {
-      name &&
-        password === confirmPassword &&
+      password === confirmPassword &&
         this.props.dispatch(
           editUser(name, password, confirmPassword, user._id)
         );
     }
-    {
-      password !== confirmPassword && this.props.dispatch(passwordNotMatch());
-    }
+    // {
+    //   password !== confirmPassword && this.props.dispatch(passwordNotMatch());
+    // }
   };
   componentWillUnmount() {
     this.props.dispatch(clearAuthState());
