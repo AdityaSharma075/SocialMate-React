@@ -25,7 +25,7 @@ const PrivateRoutes = ({ isLoggedin, children }) => {
 };
 class App extends React.Component {
   componentDidMount() {
-    this.props.dispatch(fetchPosts());
+    // this.props.dispatch(fetchPosts());
     const token = localStorage.getItem('token');
     if (token) {
       const user = JSON.parse(atob(token.split('.')[1]));
@@ -36,9 +36,8 @@ class App extends React.Component {
           name: user.name,
         })
       );
-      // const user = jwtDecode(token);
-      // console.log('12');
-      this.props.dispatch(fetchUserFriends());
+
+      // this.props.dispatch(fetchUserFriends());
     } else {
       this.props.dispatch(notAuthenticate());
     }
@@ -57,16 +56,7 @@ class App extends React.Component {
               <Navbar />
             </div>
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    posts={posts}
-                    friends={this.props.friends}
-                    isLoggedin={auth.isLoggedin}
-                  />
-                }
-              />
+              <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
 
