@@ -36,7 +36,7 @@ class Navbar extends React.Component {
           {isSearching && (
             <div className="search-results">
               <ul>
-                <li>
+                <li key="search">
                   <span> Searching !!</span>
                 </li>
               </ul>

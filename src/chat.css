@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 .chat-header img:hover {
   cursor: pointer;
@@ -27,6 +28,7 @@
   border-left: 1px solid #e5e5e5;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .chat-messages .chat-bubble {
   background: #e5e5e5;
@@ -35,6 +37,12 @@
   border-radius: 5px;
   font-size: 15px;
   position: relative;
+}
+.chat-messages .user {
+  position: absolute;
+  right: 0;
+  font-size: small;
+  bottom: 5px;
 }
 .chat-messages .other-chat:after {
   content: '';
