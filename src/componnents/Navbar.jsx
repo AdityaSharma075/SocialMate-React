@@ -26,7 +26,7 @@ class Navbar extends React.Component {
       <nav className="nav">
         <div className="left-nav">
           <Link to="/">
-            <img src={SocialMate} alt="logo" />
+            <img className="logo" src={images.SOCIALMATE} alt="logo" />
           </Link>
         </div>
         <div className="search-container">
@@ -49,12 +49,12 @@ class Navbar extends React.Component {
                   <li className="search-results-row" key={user._id}>
                     {auth.user._id === user._id ? (
                       <Link to={`/setting`}>
-                        <img src={images.man} alt="user-pic" />
+                        <img src={images.user} alt="user-pic" />
                         <span>{user.name}</span>
                       </Link>
                     ) : (
                       <Link to={`/user/${user._id}`}>
-                        <img src={images.man} alt="user-pic" />
+                        <img src={images.user} alt="user-pic" />
                         <span>{user.name}</span>
                       </Link>
                     )}
@@ -68,7 +68,7 @@ class Navbar extends React.Component {
           {auth.isLoggedin && (
             <div className="user">
               <Link to="/setting">
-                <img src={images.man} alt="user-dp" id="user-dp" />
+                <img src={images.user} alt="user-dp" id="user-dp" />
               </Link>
               <span> {auth.user.name}</span>
             </div>

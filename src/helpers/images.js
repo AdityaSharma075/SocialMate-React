@@ -5,7 +5,9 @@ import man from '../assets/man.png';
 import search from '../assets/search.png';
 import share from '../assets/share.png';
 import minus from '../assets/minus.png';
-
+import SOCIALMATE from '../assets/SOCIALMATE.png';
+import user from '../assets/user.png';
+import del from '../assets/del.png';
 let obj = {
   comment,
   heart,
@@ -14,5 +16,8 @@ let obj = {
   search,
   share,
   minus,
+  SOCIALMATE,
+  del,
+  user,
 };
 export default obj;

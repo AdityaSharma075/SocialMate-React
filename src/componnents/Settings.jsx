@@ -37,7 +37,7 @@ class Settings extends Component {
     return (
       <div className="settings">
         <div className="img-container">
-          <img src={images.man} alt="user-dp" />
+          <img src={images.user} alt="user-dp" />
         </div>
         {passwordNotMatch && (
           <div className="alert error-dailog">Password not match </div>

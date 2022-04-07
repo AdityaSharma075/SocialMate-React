@@ -84,7 +84,7 @@ const User = (props) => {
   return (
     <div className="settings">
       <div className="img-container">
-        <img src={images.man} alt="user-dp" />
+        <img src={images.user} alt="user-dp" />
       </div>
 
       <div className="field">

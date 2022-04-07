@@ -203,6 +203,7 @@ code {
 .logo {
   color: #fff;
   font-size: 35px;
+  height: 35px;
 }
 .logo-icons {
   font-size: 40px;
@@ -491,11 +492,23 @@ nav .nav-links ul li:hover {
   box-sizing: border-box;
   border-radius: 4px;
 }
-.create-post > div {
+
+.create-post div {
   padding: 10px;
   border-top: 1px solid #d0d0d0;
   display: flex;
   justify-content: flex-end;
+}
+.create-post .header img {
+  height: 25px;
+  padding: 5px;
+}
+.create-post .header {
+  display: flex;
+  justify-content: flex-start;
+}
+.create-post .header span {
+  padding: 5px;
 }
 .create-post textarea {
   height: 90px;

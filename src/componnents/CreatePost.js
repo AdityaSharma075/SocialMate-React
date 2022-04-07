@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createPost } from '../actions/posts';
+import { images } from '../helpers';
 
 class CreatePost extends Component {
   constructor(props) {
@@ -26,6 +27,10 @@ class CreatePost extends Component {
   render() {
     return (
       <div className="create-post">
+        <div className="header">
+          <img src={images.user} />
+          <span>What's on you mind {this.props.user.name}</span>
+        </div>
         <textarea
           className="add-post"
           value={this.state.content}

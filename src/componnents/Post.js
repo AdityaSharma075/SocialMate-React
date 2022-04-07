@@ -71,11 +71,11 @@ class Post extends Component {
           <div className="post-avatar">
             {post.user._id === user._id ? (
               <Link to={`/setting`}>
-                <img src={images.man} alt="user-pic" />
+                <img src={images.user} alt="user-pic" />
               </Link>
             ) : (
               <Link to={`/user/${post.user._id}`}>
-                <img src={images.man} alt="user-pic" />
+                <img src={images.user} alt="user-pic" />
               </Link>
             )}
             <div>

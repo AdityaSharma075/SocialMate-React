@@ -16,11 +16,11 @@ class Home extends Component {
   }
   render() {
     const { posts, friends } = this.props;
-    const { isLoggedin } = this.props.auth;
+    const { isLoggedin, user } = this.props.auth;
     // console.log('i am here ', this.props);
     return (
       <div className="home">
-        <PostsList posts={posts} />
+        <PostsList posts={posts} user={user} />
         {isLoggedin && <FriendsList friends={friends} />}
         {isLoggedin && <Chat />}
       </div>
