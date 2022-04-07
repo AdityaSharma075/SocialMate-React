@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { images } from '../helpers';
+// import { images } from '../helpers';
 import { CreatePost, Post } from './';
 
 class PostsList extends Component {

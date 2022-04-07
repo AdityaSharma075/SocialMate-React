@@ -10,14 +10,14 @@ class Home extends Component {
     const token = localStorage.getItem('token');
 
     if (token) {
-      console.log('i ame here ascsa', token);
+      // console.log('i ame here ', token);
       this.props.dispatch(fetchUserFriends());
     }
   }
   render() {
     const { posts, friends } = this.props;
     const { isLoggedin } = this.props.auth;
-    console.log('i am her ', this.props);
+    // console.log('i am here ', this.props);
     return (
       <div className="home">
         <PostsList posts={posts} />

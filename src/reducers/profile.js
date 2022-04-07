@@ -1,6 +1,5 @@
 import {
   FETCH_USER_PROFILE,
-  UPDATE_POST,
   USER_PROFILE_FAILURE,
   USER_PROFILE_SUCCESSFUL,
 } from '../actions/actionTypes';

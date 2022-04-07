@@ -9,10 +9,10 @@ import {
 // import { images } from '../helpers';
 import { connect } from 'react-redux';
 import { Home, Navbar, Page404, Login, Signup, Settings, User } from '.';
-import { fetchPosts } from '../actions/posts';
+// import { fetchPosts } from '../actions/posts';
 import PropType from 'prop-types';
 import { authenticateUser, notAuthenticate } from '../actions/auth';
-import { fetchUserFriends } from '../actions/friends';
+// import { fetchUserFriends } from '../actions/friends';
 
 const PrivateRoutes = ({ isLoggedin, children }) => {
   const location = useLocation();
@@ -44,8 +44,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { posts, auth, friends } = this.props;
-    console.log(friends, 'ad');
+    const { auth } = this.props;
+    // console.log(friends, 'ad');
     // const { posts, auth, friends } = this.props;
     return (
       <>

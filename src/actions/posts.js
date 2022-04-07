@@ -1,4 +1,10 @@
-import { UPDATE_POST, ADD_POST, ADD_COMMENT } from './actionTypes';
+import {
+  UPDATE_POST,
+  ADD_POST,
+  ADD_COMMENT,
+  UPDATE_POST_LIKE,
+  UPDATE_POST_UNLIKE,
+} from './actionTypes';
 import { getAuthToken, getFormBody } from '../helpers/utils';
 export function fetchPosts() {
   return (dispatch) => {
@@ -78,3 +84,68 @@ export function addComment(comment, postId) {
     postId,
   };
 }
+
+export function addLike(id, likeType, userId) {
+  return (dispatch) => {
+    const url = `/api/v1/likes/toggle?likeable_id=${id}&likeable_type=${likeType}`;
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${getAuthToken()}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('LIKE DATA', data);
+
+        if (data.success) {
+          if (likeType === 'Post') {
+            if (data.data.deleted) {
+              // dispatch(addUnLikeToStore(id, userId));
+              console.log('i am in deleted');
+              dispatch(addUnLikeToStore(id, userId, data.data.like));
+            } else {
+              console.log('i am not');
+
+              dispatch(addLikeToStore(id, userId, data.data.like));
+            }
+          }
+        }
+      });
+  };
+}
+
+export function addLikeToStore(postId, userId, like) {
+  return {
+    type: UPDATE_POST_LIKE,
+    postId,
+    userId,
+    like,
+  };
+}
+export function addUnLikeToStore(postId, userId, like) {
+  return {
+    type: UPDATE_POST_UNLIKE,
+    postId,
+    userId,
+    like,
+  };
+}
+// export function addLikeToStoreComment(commentId, userId, like) {
+//   return {
+//     type: UPDATE_COMMENT_LIKE,
+//     commentId,
+//     userId,
+//     like,
+//   };
+// }
+// export function addUnLikeToStoreComment(commentId, userId, like) {
+//   return {
+//     type: UPDATE_COMMENT_UNLIKE,
+//     commentId,
+//     userId,
+//     like,
+//   };
+// }

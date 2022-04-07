@@ -22,15 +22,11 @@ class Settings extends Component {
   handelSave = () => {
     const { name, password, confirmPassword } = this.state;
     const { user } = this.props.auth;
-    {
-      password === confirmPassword &&
-        this.props.dispatch(
-          editUser(name, password, confirmPassword, user._id)
-        );
-    }
-    // {
-    //   password !== confirmPassword && this.props.dispatch(passwordNotMatch());
-    // }
+
+    password === confirmPassword &&
+      this.props.dispatch(editUser(name, password, confirmPassword, user._id));
+
+    password !== confirmPassword && this.props.dispatch(passwordNotMatch());
   };
   componentWillUnmount() {
     this.props.dispatch(clearAuthState());

@@ -5,14 +5,23 @@ import { images } from '../helpers';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/auth';
+import { searchUsers, clearSearchState } from '../actions/search';
 
 class Navbar extends React.Component {
   logOut = () => {
     localStorage.removeItem('token');
     this.props.dispatch(logoutUser());
   };
+  handleSearch = (e) => {
+    const searchText = e.target.value;
+
+    searchText === ''
+      ? this.props.dispatch(clearSearchState())
+      : this.props.dispatch(searchUsers(searchText));
+  };
   render() {
-    const { auth } = this.props;
+    const { auth, results, isSearching } = this.props;
+
     return (
       <nav className="nav">
         <div className="left-nav">
@@ -23,19 +32,37 @@ class Navbar extends React.Component {
         <div className="search-container">
           <img className="search-icon" src={images.search} alt="search-icon" />
 
-          <input placeholder="Search" />
-          <div className="search-results">
-            <ul>
-              <li className="search-results-row">
-                <img src={images.man} alt="user-dp" />
-                <span>Aashi rai</span>
-              </li>
-              <li className="search-results-row">
-                <img src={images.man} alt="user-dp" />
-                <span>Aashi rai</span>
-              </li>
-            </ul>
-          </div>
+          <input placeholder="Search" onChange={this.handleSearch} />
+          {isSearching && (
+            <div className="search-results">
+              <ul>
+                <li>
+                  <span> Searching !!</span>
+                </li>
+              </ul>
+            </div>
+          )}
+          {results.length > 0 && (
+            <div className="search-results">
+              <ul>
+                {results.map((user) => (
+                  <li className="search-results-row" key={user._id}>
+                    {auth.user._id === user._id ? (
+                      <Link to={`/setting`}>
+                        <img src={images.man} alt="user-pic" />
+                        <span>{user.name}</span>
+                      </Link>
+                    ) : (
+                      <Link to={`/user/${user._id}`}>
+                        <img src={images.man} alt="user-pic" />
+                        <span>{user.name}</span>
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <div className="right-nav">
           {auth.isLoggedin && (
@@ -70,6 +97,8 @@ class Navbar extends React.Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    results: state.search.results,
+    isSearching: state.search.isSearching,
   };
 }
 export default connect(mapStateToProps)(Navbar);

@@ -17,7 +17,7 @@ const User = (props) => {
     if (params.userId) {
       props.dispatch(fetchUserProfile(params.userId));
     }
-  }, []);
+  }, [params.userId]);
   console.log(props, 'fesd');
   const userId = params.userId;
   let index;

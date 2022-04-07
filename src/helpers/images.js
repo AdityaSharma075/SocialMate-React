@@ -5,7 +5,7 @@ import man from '../assets/man.png';
 import search from '../assets/search.png';
 import share from '../assets/share.png';
 
-export default {
+let obj = {
   comment,
   heart,
   heart_active,
@@ -13,3 +13,4 @@ export default {
   search,
   share,
 };
+export default obj;
