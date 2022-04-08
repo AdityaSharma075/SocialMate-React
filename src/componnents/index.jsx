@@ -12,7 +12,7 @@ import FriendsList from './FriendsList';
 import CreatePost from './CreatePost';
 import Post from './Post';
 import Comment from './Comment';
-import Chat from './Chat';
+import Chat from './chat';
 export {
   PostsList,
   App,
