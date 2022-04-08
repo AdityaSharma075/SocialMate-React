@@ -20,7 +20,7 @@ class Home extends Component {
     // console.log('i am here ', this.props);
     return (
       <div className="home">
-        <PostsList posts={posts} user={user} />
+        <PostsList posts={posts} user={user} isLoggedin={isLoggedin} />
         {isLoggedin && <FriendsList friends={friends} />}
         {isLoggedin && <Chat />}
       </div>

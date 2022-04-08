@@ -29,7 +29,7 @@ class CreatePost extends Component {
       <div className="create-post">
         <div className="header">
           <img src={images.user} />
-          <span>What's on you mind {this.props.user.name}</span>
+          <span>What's on you mind {this.props.user.name} ?</span>
         </div>
         <textarea
           className="add-post"

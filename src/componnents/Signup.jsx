@@ -37,7 +37,7 @@ class Signup extends Component {
   };
   handelFormSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     const { email, password, confirm_password, name } = this.state;
     if (email && password && confirm_password && name) {
       this.props.dispatch(startSignup());

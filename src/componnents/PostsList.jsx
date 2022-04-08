@@ -5,10 +5,10 @@ import { CreatePost, Post } from './';
 
 class PostsList extends Component {
   render() {
-    const { posts, user } = this.props;
+    const { posts, user, isLoggedin } = this.props;
     return (
       <div className="posts-list">
-        <CreatePost user={user} />
+        {isLoggedin && <CreatePost user={user} />}
         {posts.map((post) => (
           <Post post={post} key={post._id} />
         ))}

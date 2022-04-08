@@ -18,7 +18,7 @@ const User = (props) => {
       props.dispatch(fetchUserProfile(params.userId));
     }
   }, [params.userId]);
-  console.log(props, 'fesd');
+  // console.log(props, 'fesd');
   const userId = params.userId;
   let index;
 
@@ -66,7 +66,7 @@ const User = (props) => {
 
     const response = await fetch(url, extra);
     const data = await response.json();
-    console.log('await data', data);
+    // console.log('await data', data);
 
     if (data.success) {
       seterror(data.message);

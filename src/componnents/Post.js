@@ -48,16 +48,16 @@ class Post extends Component {
     let isPostLikedByUser = false;
 
     // console.log('acasfcef', post.updatedAt);
-    var current = new Date();
+
     const time = new Date(post.createdAt);
-
-    let min = Math.floor((current - time) / (1000 * 60));
-
-    let flag = false;
-    if (min > 60) {
-      flag = true;
-      min = time.toLocaleDateString();
-    }
+    var options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    const t = new Intl.DateTimeFormat('en-US', options).format(time);
 
     post.likes.map((like) => {
       if (like.user._id === user._id) {
@@ -80,11 +80,8 @@ class Post extends Component {
             )}
             <div>
               <span className="post-author">{post.user.name}</span>
-              {flag ? (
-                <span className="post-comment-time"> {min} </span>
-              ) : (
-                <span className="post-comment-time"> {min} minutes ago</span>
-              )}
+
+              <span className="post-comment-time"> {t} </span>
             </div>
           </div>
           <div className="post-content">{post.content}</div>

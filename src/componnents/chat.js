@@ -12,7 +12,7 @@ class Chat extends Component {
       typedMessage: '',
       open: false,
     };
-    this.socket = io.connect('http://localhost:5000');
+    this.socket = io.connect('http://43.204.35.13:5000/');
     // console.log('oasdfm ', props);
     this.userEmail = props.user.email;
 

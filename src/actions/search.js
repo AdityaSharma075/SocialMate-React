@@ -17,7 +17,7 @@ export function searchUsers(searchText) {
     })
       .then((repsonse) => repsonse.json())
       .then((data) => {
-        console.log('SEARCH data', data);
+        // console.log('SEARCH data', data);
         if (data.success) {
           dispatch(searchResultsSuccess(data.data.users));
         } else {
