@@ -25,7 +25,7 @@ class Chat extends Component {
     const self = this;
 
     this.socket.on('connect', function () {
-      console.log('CONNECTION ESTABLISHED');
+      // console.log('CONNECTION ESTABLISHED');
 
       socketConnection.emit('join_room', {
         user_email: this.userEmail,
@@ -33,7 +33,7 @@ class Chat extends Component {
       });
 
       socketConnection.on('user_joined', function (data) {
-        console.log('NEW USER JOINED', data);
+        // console.log('NEW USER JOINED', data);
       });
     });
 
@@ -57,7 +57,7 @@ class Chat extends Component {
   };
   handleSubmit = () => {
     const { typedMessage } = this.state;
-    console.log('here', typedMessage, 'sdf', this.userEmail);
+    // console.log('here', typedMessage, 'sdf', this.userEmail);
     if (typedMessage && this.userEmail) {
       this.socket.emit('send_message', {
         message: typedMessage,
