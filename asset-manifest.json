@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/SocialMate-React/static/css/main.21ba6970.chunk.css",
+    "main.js": "/SocialMate-React/static/js/main.0858fbf9.chunk.js",
+    "main.js.map": "/SocialMate-React/static/js/main.0858fbf9.chunk.js.map",
+    "runtime-main.js": "/SocialMate-React/static/js/runtime-main.abc17950.js",
+    "runtime-main.js.map": "/SocialMate-React/static/js/runtime-main.abc17950.js.map",
+    "static/js/2.b04cfef3.chunk.js": "/SocialMate-React/static/js/2.b04cfef3.chunk.js",
+    "static/js/2.b04cfef3.chunk.js.map": "/SocialMate-React/static/js/2.b04cfef3.chunk.js.map",
+    "index.html": "/SocialMate-React/index.html",
+    "static/css/main.21ba6970.chunk.css.map": "/SocialMate-React/static/css/main.21ba6970.chunk.css.map",
+    "static/js/2.b04cfef3.chunk.js.LICENSE.txt": "/SocialMate-React/static/js/2.b04cfef3.chunk.js.LICENSE.txt",
+    "static/media/SocialMate.1e498dfd.svg": "/SocialMate-React/static/media/SocialMate.1e498dfd.svg",
+    "static/media/comment.70b39da7.png": "/SocialMate-React/static/media/comment.70b39da7.png",
+    "static/media/heart.c412cbae.png": "/SocialMate-React/static/media/heart.c412cbae.png",
+    "static/media/heart_active.a13e3857.png": "/SocialMate-React/static/media/heart_active.a13e3857.png",
+    "static/media/man.ab45eb1d.png": "/SocialMate-React/static/media/man.ab45eb1d.png",
+    "static/media/share.29ce786d.png": "/SocialMate-React/static/media/share.29ce786d.png",
+    "static/media/user.0d14c699.png": "/SocialMate-React/static/media/user.0d14c699.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.abc17950.js",
+    "static/js/2.b04cfef3.chunk.js",
+    "static/css/main.21ba6970.chunk.css",
+    "static/js/main.0858fbf9.chunk.js"
+  ]
+}
